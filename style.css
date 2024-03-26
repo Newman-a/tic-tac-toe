@@ -1,0 +1,398 @@
+*,::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.ig{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.instagram{
+    display: inline-block;
+    width: 25px;
+}
+
+body{
+    background-color: #212121;
+    color: white;
+    font-family: Arial;
+}
+
+.game{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    gap: 1rem;
+    place-content: center;
+}
+
+.game__board{
+    width: 300px;
+    height: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.cell{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    grid-template-areas: "draw";
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.cellCTL{
+    width: 100%;
+    height: 100%;
+    
+    border-bottom: 2px ridge #149CEA;
+    border-right: 2px ridge #149CEA;
+
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    grid-template-areas: "draw";
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.cellCTR{
+    width: 100%;
+    height: 100%;
+    
+    border-bottom: 2px ridge #149CEA;
+    border-left: 2px ridge #149CEA;
+
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    grid-template-areas: "draw";
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.cellCBL{
+    width: 100%;
+    height: 100%;
+    
+    border-top: 2px ridge #149CEA;
+    border-right: 2px ridge #149CEA;
+
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    grid-template-areas: "draw";
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.cellCBR{
+    width: 100%;
+    height: 100%;
+    
+    border-top: 2px ridge #149CEA;
+    border-left: 2px ridge #149CEA;
+
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    grid-template-areas: "draw";
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.cellMT{
+    width: 100%;
+    height: 100%;
+    
+    border-bottom: 2px ridge #149CEA;
+
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    grid-template-areas: "draw";
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.cellMB{
+    width: 100%;
+    height: 100%;
+    
+    border-top: 2px ridge #149CEA;
+
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    grid-template-areas: "draw";
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.cellML{
+    width: 100%;
+    height: 100%;
+    
+    border-right: 2px ridge #149CEA;
+
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    grid-template-areas: "draw";
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.cellMR{
+    width: 100%;
+    height: 100%;
+    
+    border-left: 2px ridge #149CEA;
+
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    grid-template-areas: "draw";
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.circle::after{
+    content: "";
+    grid-area: draw;
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 10px solid #fff;
+    animation: show .3s;
+}
+
+.cross::after{
+    content: "";
+    grid-area: draw;
+    display: block;
+    width: 10px;
+    height: 70px;
+    background-color: #fff;
+    transform: rotate(45deg);
+    border-radius: 10px;
+    animation: show-reverse .3s;
+}
+
+.cross::before{
+    content: "";
+    grid-area: draw;
+    display: block;
+    width: 10px;
+    height: 70px;
+    background-color: #fff;
+    transform: rotate(-45deg);
+    border-radius: 10px;
+    animation: show .3s;
+}
+
+.crossWinner::after, .crossWinner::before{
+    background-color: #1479EA;
+}
+
+.circleWinner::after{
+    border-color: #1479EA;
+}
+
+@keyframes show{
+    0%{
+        transform: scale(0) rotate(-45deg);
+    
+    }
+    100%{
+        transform: scale(1) rotate(-45deg);
+    }
+}
+
+@keyframes show-reverse{
+    0%{
+        transform: scale(0) rotate(45deg);
+    }
+    100%{
+        transform: scale(1) rotate(45deg);
+    }
+}
+
+.endgame{
+    background-color: #000000b3;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .5s;
+    display: grid;
+    place-content: center;
+    height: 100vh;
+
+    user-select: none;
+}
+
+.endgame__show{
+    display: grid;
+    gap: 1rem;
+    text-align: center;
+}
+
+.endgame__button{
+    background-color: dodgerblue;
+    font-weight: bold;
+    color: #fff;
+    padding: 1rem 1rem;
+    margin: 0 auto;
+    width: max-content;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 1rem;
+
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.show{
+    opacity: 1;
+    pointer-events: unset;
+}
+
+/* Efecto Botton */
+
+.lds-dual-ring {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+
+  .lds-dual-ring:after {
+    content: " ";
+    display: flex;
+    width: 24px;
+    height: 24px;
+    margin: 2px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+
+    justify-content: center;
+    align-items: center;
+
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+/* Inicio */
+
+.play{
+    background-color: #212121;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .1s;
+    display: grid;
+    place-content: center;
+    height: 100vh;
+
+    
+}
+
+/*Section del inicio*/
+.play--mostrar{
+    opacity: 1;
+    pointer-events: unset;
+    gap: 1rem;
+}
+
+.play__show{
+    display: grid;
+    gap: 1rem;
+    text-align: center;
+}
+
+/* Efecto de button de inicio */
+
+.play__button {
+    width: 10em;
+    position: relative;
+    height: 3.5em;
+    border: 3px ridge #149CEA;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    transition: 1s;
+    border-radius: 0.3em;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+
+    user-select: none;
+
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    
+  }
+  
+.play__button::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 3%;
+    width: 95%;
+    height: 40%;
+    background-color: #212121;
+    transition: 0.5s;
+    transform-origin: center;
+  }
+  
+.play__button::before {
+    content: "";
+    transform-origin: center;
+    position: absolute;
+    top: 80%;
+    left: 3%;
+    width: 95%;
+    height: 40%;
+    background-color: #212121;
+    transition: 0.5s;
+  }
+  
+  .play__button:hover::before, .play__button:hover::after {
+    transform: scale(0)
+  }
+  
+  .play__button:hover {
+    box-shadow: inset 0px 0px 25px #1479EA;
+}
+
+/* Efecto de button de inicio */
+
+.focus-in-expand {
+    user-select: none;
+	animation: focus-in-expand 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+ @keyframes focus-in-expand {
+    0% {
+      letter-spacing: -0.5em;
+      filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      filter: blur(0px);
+      opacity: 1;
+    }
+  }
