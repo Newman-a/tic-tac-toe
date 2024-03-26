@@ -1,2 +1,3 @@
 # tic-tac-toe
-Tic Tac Toe
+
+Manipulación del DOM
