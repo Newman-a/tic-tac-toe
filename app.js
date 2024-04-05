@@ -25,7 +25,7 @@ o = o.slice(0,6);
 */
 
 //Mensaje de bienvenida en consola personalizado
-console.log('%c Ig: @Newman_ga ', 'color: #1479EA; font-size: #px; background-color: #000000; padding: 5px 20; border-radius: 5px; font-family: Arial; font-weight: bold;');
+console.log('%c Hola programador ', 'color: #1479EA; font-size: #px; background-color: #000000; padding: 5px 20; border-radius: 5px; font-family: Arial; font-weight: bold;');
 
 play.addEventListener('click', () => {
     playshow.classList.remove('play--mostrar');
@@ -48,14 +48,6 @@ let players  = {
     o: "circle"
 }
 
-const winningPosition = [
-    
-    [0,1,2], [3,4,5], [6,7,8], // Horizontal
-    [0,3,6], [1,4,7], [2,5,8], // Vertical
-    [0,4,8], [2,4,6] // Diagona
-
-]
-
 function startGame(){
     createBoard();
     /*Si quieres que los jugadores tengan nombres personalizados, 
@@ -77,27 +69,19 @@ function createBoard(){
         gameBoard.firstElementChild.remove();
     }
 
+    
     for(let i = 0; i < cells; i++){
         const div = document.createElement('div');
+        const design = ['clase-0', 'clase-1', 'clase-2','clase-3', 'clase-4', 
+        'clase-5', 'clase-6', 'clase-7', 'clase-8'];
+
         div.classList.add('cell');
 
-        if(i === 0){
-            div.classList.add('cellCTL');
-        } else if(i === 1){
-            div.classList.add('cellMT');
-        } else if(i === 2){
-            div.classList.add('cellCTR');
-        } else if(i === 3){
-            div.classList.add('cellML');
-        } else if(i === 5){
-            div.classList.add('cellMR');
-        } else if(i === 6){
-            div.classList.add('cellCBL');
-        } else if(i === 7){
-            div.classList.add('cellMB');
-        } else if(i === 8){
-            div.classList.add('cellCBR');
-        } 
+        for(let j = 0; j <= design.length; j++){
+            if(i === j){
+                div.classList.add(design[j]);
+            }
+        }
 
         div.addEventListener('click', handleGame, {once:true});
 
@@ -138,80 +122,28 @@ function changeTurn(){
 function checkWinner(currentPlayer){
     const cells = document.querySelectorAll('.cell');
     
-    const winner = winningPosition.some(array => { //El array no se lee porque es un array de arrays
+    const winnerCombination = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], // Filas
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columnas
+        [0, 4, 8], [2, 4, 6] // Diagonales
+    ];
 
-        //Los siguientes if son para que las celdas ganadoras se pinten de un color diferente
-
-        if([0,1,2].every(position => cells[position].classList.contains(currentPlayer))){
-           
-
-            for(let i = 0; i < 3; i++){
-                isTurnX ? cells[i].classList.add('crossWinner') : cells[i].classList.add('circleWinner');
-            }
-
+    const winner = winnerCombination.some(combination => {
+        if(combination.every(position => cells[position].classList.contains(currentPlayer))) {
+            combination.forEach(position => {
+                isTurnX ? cells[position].classList.add('crossWinner') : cells[position].classList.add('circleWinner');
+            });
             return true;
-        } else if([3,4,5].every(position => cells[position].classList.contains(currentPlayer))){
-
-            for(let i = 3; i < 6; i++){
-                isTurnX ? cells[i].classList.add('crossWinner') : cells[i].classList.add('circleWinner');
-            }
-
-            return true;
-        } else if([6,7,8].every(position => cells[position].classList.contains(currentPlayer))){
-
-            for(let i = 6; i < 9; i++){
-                isTurnX ? cells[i].classList.add('crossWinner') : cells[i].classList.add('circleWinner');
-            }
-
-            return true;
-        } else if ([0,3,6].every(position => cells[position].classList.contains(currentPlayer))){
-
-            for(let i = 0; i < 9; i+=3){
-                isTurnX ? cells[i].classList.add('crossWinner') : cells[i].classList.add('circleWinner');
-            }
-
-            return true;
-        } else if ([1,4,7].every(position => cells[position].classList.contains(currentPlayer))){
-            for(let i = 1; i < 9; i+=3){
-                isTurnX ? cells[i].classList.add('crossWinner') : cells[i].classList.add('circleWinner');
-            }
-
-            return true;
-        } else if ([2,5,8].every(position => cells[position].classList.contains(currentPlayer))){
-            for(let i = 2; i < 9; i+=3){
-                isTurnX ? cells[i].classList.add('crossWinner') : cells[i].classList.add('circleWinner');
-            }
-
-            return true;
-        } else if ([0,4,8].every(position => cells[position].classList.contains(currentPlayer))){
-            for(let i = 0; i < 9; i+=4){
-                isTurnX ? cells[i].classList.add('crossWinner') : cells[i].classList.add('circleWinner');
-            }
-
-            return true;
-        } else if ([2,4,6].every(position => cells[position].classList.contains(currentPlayer))){
-            for(let i = 2; i < 7; i+=2){
-                isTurnX ? cells[i].classList.add('crossWinner') : cells[i].classList.add('circleWinner');
-            }
-
-            return true;
-        } else {
-            return false;
         }
-
-        /*Esta opcion de abajo es importante si quieres desahacerte de los if anteriores*/
-        // return array.every(position => {
-
-        //     return cells[position].classList.contains(currentPlayer);
-        // });
+        return false;
     });
 
-    if(!winner){
-        return;
+    if(winner) {
+        showEndgame(true);
+        return true;
     }
 
-    showEndgame(true);
-        return true;
+    return false;
 }
 
 function showEndgame(winner){
@@ -228,7 +160,6 @@ function showEndgame(winner){
         endGameResult.textContent = "¡Empate!";
     }
 }
-
 
 
 buttonReset.addEventListener('click', () => {
