@@ -4,12 +4,19 @@
     box-sizing: border-box;
 }
 
+body{
+    background-color: #212121;
+    color: white;
+    font-family: Arial;
+}
+
 .ig{
     color: #fff;
     display: flex;
     align-items: center;
     gap: 10px;
     text-decoration: none;
+    
 }
 
 .instagram{
@@ -17,11 +24,10 @@
     width: 25px;
 }
 
-body{
-    background-color: #212121;
-    color: white;
-    font-family: Arial;
+.name{
+    user-select: none;
 }
+
 
 .game{
     width: 100%;
@@ -49,12 +55,12 @@ body{
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.cellCTL{
+.clase-0{
     width: 100%;
     height: 100%;
     
-    border-bottom: 2px ridge #149CEA;
     border-right: 2px ridge #149CEA;
+    border-bottom: 2px ridge #149CEA;
 
     display: grid;
     place-items: center;
@@ -63,12 +69,25 @@ body{
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.cellCTR{
+.clase-1{
     width: 100%;
     height: 100%;
     
     border-bottom: 2px ridge #149CEA;
+
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    grid-template-areas: "draw";
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.clase-2{
+    width: 100%;
+    height: 100%;
+    
     border-left: 2px ridge #149CEA;
+    border-bottom: 2px ridge #149CEA;
 
     display: grid;
     place-items: center;
@@ -77,12 +96,12 @@ body{
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.cellCBL{
+.clase-3{
     width: 100%;
     height: 100%;
     
-    border-top: 2px ridge #149CEA;
     border-right: 2px ridge #149CEA;
+    border-bottom: 2px ridge #149CEA;
 
     display: grid;
     place-items: center;
@@ -91,21 +110,7 @@ body{
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.cellCBR{
-    width: 100%;
-    height: 100%;
-    
-    border-top: 2px ridge #149CEA;
-    border-left: 2px ridge #149CEA;
-
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-    grid-template-areas: "draw";
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-.cellMT{
+.clase-4{
     width: 100%;
     height: 100%;
     
@@ -118,11 +123,12 @@ body{
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.cellMB{
+.clase-5{
     width: 100%;
     height: 100%;
     
-    border-top: 2px ridge #149CEA;
+    border-left: 2px ridge #149CEA;
+    border-bottom: 2px ridge #149CEA;
 
     display: grid;
     place-items: center;
@@ -131,7 +137,7 @@ body{
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.cellML{
+.clase-6{
     width: 100%;
     height: 100%;
     
@@ -144,7 +150,19 @@ body{
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.cellMR{
+.clase-7{
+    width: 100%;
+    height: 100%;
+    
+    border: none;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    grid-template-areas: "draw";
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.clase-8{
     width: 100%;
     height: 100%;
     
